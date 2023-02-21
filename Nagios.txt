@@ -1,52 +1,44 @@
-    1  sudo su
-    2  yum update -y
-    3  yum install httpd php
-    4  yum install gcc glibc glibc-common
-    5  yum install gcc glibc glibc-common
-    6  yum install gd gd-devel
-    7  adduser -m nagios
-    8  passwd nagios
-    9  groupadd nagioscmd
-   10  usermod -a -G nagioscmd nagios
-   11  usermod -a -G nagioscmd apache
-   12  mkdir ~/downloads
-   13  cd ~/downloads
-   14  wget http://prdownloads.sourceforge.net/so...
-   15  wget https://excellmedia.dl.sourceforge.net/project/nagios/nagios-4.x/nagios-4.0.8/nagios-4.0.8.tar.gz
-   16  cd ~/downloads
-   17  wget https://excellmedia.dl.sourceforge.net/project/nagios/nagios-4.x/nagios-4.0.8/nagios-4.0.8.tar.gz
-   18  wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
-   19  ls
-   20  tar zxvf nagios-4.0.8.tar.gz
-   21  ls
-   22  cd nagios-4.0.8
-   23  ./configure --with-command-group=nagioscmd
-   24  make all
-   25  make install
-   26  make install-init
-   27  cd ~/downloads
-   28  ls
-   29  cd nagios-4.0.8
-   30  make install-config
-   31  make install-commandmode
-   32  make install-webconf
-   33  htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
-   34  service httpd restart
-   35  cd ~/downloads
-   36  ls
-   37  tar zxvf nagios-plugins-2.0.3.tar.gz
-   38  ls
-   39  cd nagios-plugins-2.0.3
-   40  ./configure --with-nagios-user=nagios --with-nagios-group=nagios
-   41  cd ~/downloads
-   42  ls
-   43  cd nagios-plugins-2.0.3
-   44  ./configure --with-nagios-user=nagios --with-nagios-group=nagios
-   45  make
-   46  make install
-   47  chkconfig --add nagios
-   48  chkconfig nagios on
-   49  /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
-   50  service nagios start
-   51  service httpd restart
-   52  history
+   sudo su
+   yum update -y
+   yum install httpd php
+   yum install gcc glibc glibc-common
+   yum install gd gd-devel
+   adduser -m nagios
+   passwd nagios
+   groupadd nagioscmd
+   usermod -a -G nagioscmd nagios
+   usermod -a -G nagioscmd apache
+   mkdir ~/downloads
+   cd ~/downloads
+   wget https://excellmedia.dl.sourceforge.net/project/nagios/nagios-4.x/nagios-4.0.8/nagios-4.0.8.tar.gz
+   wget http://nagios-plugins.org/download/nagios-plugins-2.0.3.tar.gz
+   ls
+   tar zxvf nagios-4.0.8.tar.gz
+   ls
+   cd nagios-4.0.8
+   ./configure --with-command-group=nagioscmd
+   make all
+   make install
+   make install-init
+   cd ~/downloads
+   ls
+   cd nagios-4.0.8
+   make install-config
+   make install-commandmode
+   make install-webconf
+   htpasswd -c /usr/local/nagios/etc/htpasswd.users nagiosadmin
+   service httpd restart
+   cd ~/downloads
+   ls
+   tar zxvf nagios-plugins-2.0.3.tar.gz
+   ls
+   cd nagios-plugins-2.0.3
+   ./configure --with-nagios-user=nagios --with-nagios-group=nagios
+   make all
+   make install
+   chkconfig --add nagios
+   chkconfig nagios on
+   /usr/local/nagios/bin/nagios -v /usr/local/nagios/etc/nagios.cfg
+   service nagios start
+   service httpd restart
+   history
